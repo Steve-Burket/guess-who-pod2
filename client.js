@@ -12,7 +12,7 @@ console.log("Here are all the available people:", people);
 // [x] step 4: in the click handler, compare the image clicked (name) to the game's answer
 // [] step 5: reset the game (call a function that repeats step 0.5)
 
-let guessNum = randomNumber(0, people.length - 1);
+let guessNum;
 
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (1 + max - min) + min);
@@ -34,9 +34,7 @@ function onReady() {
     }
   });
 
-  $("#game-prompt").text(people[guessNum].name);
-
-  console.log(guessNum);
+  gameReset();
 
   for (let person of people) {
     // console.log(person.githubUsername); //when we get a value from an object: person.githubUsername
@@ -50,13 +48,8 @@ function onReady() {
 
   function gameReset() {
     console.log("in game reset");
-    // $(".content-main").on(function () {
-    //   location.reload();
-    // });
-    $(".main-content").click(function () {
-      location.reload(true);
-      alert("Reloading Page");
-    });
+    guessNum = randomNumber(0, people.length - 1);
+    $("#game-prompt").text(people[guessNum].name);
   }
 }
 
