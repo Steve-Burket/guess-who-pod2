@@ -27,9 +27,11 @@ function onReady() {
     let answer = $(event.target).data("name");
 
     if (answer === people[guessNum].name) {
-      alert('correct answer!');
+      alert(`the correct answer is, ${answer}!`);
+      gameReset();
+    } else {
+      alert("Try again!");
     }
-
   });
 
   $("#game-prompt").text(people[guessNum].name);
@@ -45,6 +47,17 @@ function onReady() {
     // TODO: mark img class in css as display: inline-block
     $(".content-main").append(`<div class="image-block">${pic}</div>`);
   } // end of for loop
+
+  function gameReset() {
+    console.log("in game reset");
+    // $(".content-main").on(function () {
+    //   location.reload();
+    // });
+    $(".main-content").click(function () {
+      location.reload(true);
+      alert("Reloading Page");
+    });
+  }
 }
 
 $(document).ready(onReady);
